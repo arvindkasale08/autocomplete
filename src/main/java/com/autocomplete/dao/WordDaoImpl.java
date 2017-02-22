@@ -26,24 +26,28 @@ public class WordDaoImpl implements WordDao {
 		int count = 0;
 		Session session = sessionFactory.getCurrentSession();
 		for(String str : list) {
-			Word word = new Word(str);
-			Alphabet alphabet = new Alphabet(str);
-			word.setAlphabet(alphabet);
-			session.save(alphabet);
-			session.save(word);
-			System.out.println("SAving string :"+count+++": "+str);
-			if ( count % 20 == 0 ) { //20, same as the JDBC batch size
-				//flush a batch of inserts and release memory:
-				session.flush();
-				session.clear();
-			}
 
+			count++;
+			if(count > 120078) {
+				Word word = new Word(str);
+				Alphabet alphabet = new Alphabet(str);
+				word.setAlphabet(alphabet);
+				session.save(alphabet);
+				session.save(word);
+				System.out.println("SAving string :" + count + ": " + str);
+				if (count % 20 == 0) { //20, same as the JDBC batch size
+					//flush a batch of inserts and release memory:
+					session.flush();
+					session.clear();
+				}
+			}
 		}
 	}
 
 	@Override
 	public List<String> search(String search) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Word.class);
+		criteria.createAlias("alphabet","alphabet");
 		List<Word> words = criteria.add(Restrictions.like("name", search+"%")).list();
 		return words.stream().map(word -> word.getName()).collect(Collectors.toList());
 	}

@@ -31,6 +31,8 @@ public class Trie {
 		return nodeCount;
 	}
 
+	public int getWordCount() { return wordCount;}
+
 	public TrieNode insert(String str) {
 		if(null == str) {
 			System.out.println(Constants.NULL_ERROR);

@@ -9,13 +9,17 @@
 			<div class="form-group col-md-4">
 				<button ng-disabled="vm.results.length > 0" ng-click="vm.add()" type="submit" class="	btn btn-success">Add</button>
 			</div>
+			<div class="form-group col-md-4">
+				<div class="cold-md-3">Node Count : {{vm.trie.nodeCount}}</div>
+				<div class="cold-md-3">Word Count : {{vm.trie.wordCount}}</div>
+			</div>
 		</form>
 	</div>
 
 	<div class="col-md-12">
-		<legend>Showing Results for {{vm.name}}</legend>
+		<legend>Showing Results for {{vm.name}} - Total Result are {{vm.results.length}}</legend>
 		<div class="col-md-12 result-container">
-			<span class="result" ng-repeat="result in vm.results">{{result}}</span>
+			<span class="result" ng-repeat="result in vm.results|limitTo:100">{{result}}</span>
 		</div>
 	</div>
 </div>

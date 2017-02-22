@@ -3,6 +3,7 @@
   var app = angular.module("autocomplete");
   var searchService = function($http) {
     function search(name) {
+      name = name === undefined ? "" : name;
       var url = "/search?name="+name;
       return $http.get(url);
     }
@@ -16,10 +17,17 @@
       var url = "/search/add?name="+name;
       return $http.get(url);
     }
+
+    function home() {
+      var url = "/home";
+      return $http.get(url);
+    }
+
     return {
       search : search,
       add : add,
-      searchFromDB : searchFromDB
+      searchFromDB : searchFromDB,
+      home : home
     }
   }
   app.service("SearchService", ["$http", searchService]);
