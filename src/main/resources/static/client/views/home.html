@@ -1,0 +1,21 @@
+<div class="col-md-12 min-height-600">
+
+	<div class="col-md-12">
+		<form name="store" autocomplete="false">
+			<div class="form-group col-md-4">
+				<input type="hidden" name="name"/>
+				<input autocomplete="new-password" required type="text" ng-model="vm.name" ng-change="vm.search()" name="name" class="form-control" id="name" placeholder="Search String">
+			</div>
+			<div class="form-group col-md-4">
+				<button ng-disabled="vm.results.length > 0" ng-click="vm.add()" type="submit" class="	btn btn-success">Add</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="col-md-12">
+		<legend>Showing Results for {{vm.name}}</legend>
+		<div class="col-md-12 result-container">
+			<span class="result" ng-repeat="result in vm.results">{{result}}</span>
+		</div>
+	</div>
+</div>
