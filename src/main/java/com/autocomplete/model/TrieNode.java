@@ -50,7 +50,7 @@ public class TrieNode {
 	public TrieNode subNode(char ch) {
 		if (this.children != null) {
 			for (TrieNode node : this.children) {
-				if(ch == node.getValue()) {
+				if(Character.toLowerCase(ch) == Character.toLowerCase(node.getValue())) {
 					return node;
 				}
 			}

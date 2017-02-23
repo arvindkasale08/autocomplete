@@ -8,6 +8,7 @@
     vm.trie = "";
     vm.trieConstructTime = 0;
     vm.trieSearchTime = 0;
+    vm.trieAddTime = 0;
     vm.trie = true;
     vm.home = function() {
       var t0 = new Date().getTime();
@@ -30,7 +31,11 @@
       });
     }
     vm.add = function() {
+      var t0 = new Date().getTime();
+      var t1;
       SearchService.add(vm.name).then(function(response){
+        t1 = new Date().getTime();
+        vm.trieAddTime = t1-t0;
         vm.search();
       })
     }
