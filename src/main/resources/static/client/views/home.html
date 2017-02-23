@@ -10,8 +10,11 @@
 				<button ng-disabled="vm.results.length > 0" ng-click="vm.add()" type="submit" class="	btn btn-success">Add</button>
 			</div>
 			<div class="form-group col-md-4">
-				<div class="cold-md-3">Node Count : {{vm.trie.nodeCount}}</div>
-				<div class="cold-md-3">Word Count : {{vm.trie.wordCount}}</div>
+				<div ng-if="vm.trie" class="cold-md-3">Node Count : {{vm.trie.nodeCount}}</div>
+				<div ng-if="vm.trie" class="cold-md-3">Word Count : {{vm.trie.wordCount}}</div>
+				<div ng-if="vm.trie" class="cold-md-3">Trie Load Time: {{vm.trieConstructTime}}ms</div>
+				<div ng-if="vm.trie" class="cold-md-3">Trie Search Time: {{vm.trieSearchTime}}ms</div>
+				<div ng-if="vm.db" class="cold-md-3">DB Search Time: {{vm.dbSearchTime}}ms</div>
 			</div>
 		</form>
 	</div>

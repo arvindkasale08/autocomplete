@@ -1,5 +1,6 @@
 package com.autocomplete.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ public class SearchController {
 
 	@RequestMapping(value = "/db")
 	public List<String> searchFromDb(@RequestParam("name") String search) {
+		if("".equals(search))
+			return new ArrayList<>();
 		return wordService.search(search);
 	}
 

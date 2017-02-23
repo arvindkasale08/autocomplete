@@ -9,6 +9,7 @@
     }
 
     function searchFromDB(name) {
+      name = name === undefined ? "" : name;
       var url = "/search/db?name="+name;
       return $http.get(url);
     }
